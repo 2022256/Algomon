@@ -84,7 +84,7 @@ public class AlgomonGame { // renamed class
         
             switch (choice) {
                 case 1:
-                    startGame();
+                    startGame(); //calling startgame method
                     break;
                 case 2:
                     System.out.println("Thank you for playing Algomon Game. Goodbye!");
@@ -98,7 +98,7 @@ public class AlgomonGame { // renamed class
     }
     
  public static void startGame(){
-     Algomon algomon1 = new Algomon("Fire", 100, 20, 10, 30); 
+     Algomon algomon1 = new Algomon("Fire", 100, 20, 10, 30);  // create 4 new algomons with unique abilities
         algomon1.offensiveAbility = new Ability("Offensive", "Fire Attack"); 
         algomon1.defensiveAbility = new Ability("Defensive", "Fire Defense"); 
         algomon1.healingAbility = new Ability("Healing", "Fire Healing"); 
@@ -118,7 +118,7 @@ public class AlgomonGame { // renamed class
         algomon4.defensiveAbility = new Ability("Defensive", "Sun Defense"); 
         algomon4.healingAbility = new Ability("Healing", "Sun Healing"); 
  
-        Player player1 = new Player(); 
+        Player player1 = new Player(); // create 2 players 
         player1.addAlgomon(algomon1); 
         player1.addAlgomon(algomon2); 
  
@@ -128,7 +128,7 @@ public class AlgomonGame { // renamed class
  
         System.out.println("Algomon game prototype initialized!"); 
         System.out.println("Player 1 Algomon:"); 
-        for (Algomon algomon : player1.algomons) { 
+        for (Algomon algomon : player1.algomons) { // output for algomon's 
             System.out.println("Type: " + algomon.type); 
             System.out.println("Health: " + algomon.health); 
             algomon.offensiveAbility.activate(); 
@@ -144,8 +144,9 @@ public class AlgomonGame { // renamed class
             algomon.offensiveAbility.activate(); 
             algomon.defensiveAbility.activate(); 
             algomon.healingAbility.activate(); 
-            System.out.println("----------------------"); 
+            System.out.println("----------------------");
         } 
+        System.out.println("Play again?");
     } 
 }
  
