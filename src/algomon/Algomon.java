@@ -21,13 +21,33 @@ class Ability { // Abilities for Algomons
     public Ability(String type, String name) {
         this.type = type;
         this.name = name;
-        // constructor for Algomons
+        // constructor for Algomon's abilities *
     }
     
     void activate(){
         System.out.println(name + " ability activated");
     }
     //void method for abilites activation
+}
+
+class Algomonos { 
+    String type;
+    int health;
+    int attack;
+    int defense;
+    int speed;
+    Ability offensiveAbility; //abilities to execute in the game
+    Ability defensiveAbility;
+    Ability healingAbility; 
+
+    public Algomonos(String type, int health, int attack, int defense, int speed) { //constructor for algomons and their stats
+        this.type = type;
+        this.health = health;
+        this.attack = attack;
+        this.defense = defense;
+        this.speed = speed;
+    }
+       
 }
 
 public class Algomon {
