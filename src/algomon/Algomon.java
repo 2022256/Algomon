@@ -17,6 +17,17 @@ package algomon;
 class Ability { // Abilities for Algomons
     String type;
     String name;
+
+    public Ability(String type, String name) {
+        this.type = type;
+        this.name = name;
+        // constructor for Algomons
+    }
+    
+    void activate(){
+        System.out.println(name + " ability activated");
+    }
+    //void method for abilites activation
 }
 
 public class Algomon {
