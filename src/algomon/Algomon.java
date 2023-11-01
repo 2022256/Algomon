@@ -4,6 +4,9 @@
  */
 package algomon;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author LecturerA
@@ -50,6 +53,21 @@ class Algomonos {
        
 }
 
+class Player { 
+    List<Algomon> algomons; 
+ //array list for algomons
+    
+    Player() { 
+        algomons = new ArrayList<>(); 
+    } 
+ //method for add new algomons
+    
+    void addAlgomon(Algomon algomon) { 
+        algomons.add(algomon); 
+    } 
+} 
+
+
 public class Algomon {
 
     /**
@@ -57,6 +75,7 @@ public class Algomon {
      */
     public static void main(String[] args) {
         
-    }
-    
+    } 
 }
+
+
