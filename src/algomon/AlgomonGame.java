@@ -33,7 +33,7 @@ class Ability { // Abilities for Algomons
     //void method for abilites activation
 }
 
-class Algomonos { 
+class Algomon { 
     String type;
     int health;
     int attack;
@@ -43,7 +43,7 @@ class Algomonos {
     Ability defensiveAbility;
     Ability healingAbility; 
 
-    public Algomonos(String type, int health, int attack, int defense, int speed) { //constructor for algomons and their stats
+    public Algomon(String type, int health, int attack, int defense, int speed) { //constructor for algomons and their stats
         this.type = type;
         this.health = health;
         this.attack = attack;
@@ -68,14 +68,34 @@ class Player {
 } 
 
 
-public class Algomon {
+public class AlgomonGame { // renamed class
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) { //main method for the game itself, it is not required but good as an interesting feature
+    IOUtils input = new IOUtils();
+    int choice = 0;
+         while (choice != 2) {
+            choice = input.getUserInt("Welcome to Algomon Game!\n" +
+            "1. Start Game\n" +
+            "2. Exit\n" +
+           "Enter your choice: \n");
         
-    } 
+            switch (choice) {
+                case 1:
+                    startGame();
+                    break;
+                case 2:
+                    System.out.println("Thank you for playing Algomon Game. Goodbye!");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        
+    }
+    
+    }
 }
 
 
