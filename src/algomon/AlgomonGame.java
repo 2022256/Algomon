@@ -16,52 +16,86 @@ import java.util.List;
  * Group Member 2 Name: Ivan Popov
  * Group Member 2 Student Number: 2022180
  */
+// Enum for Algomon types
+enum AlgomonType {
+    FIRE, WATER, EARTH, SUN, MOON, STAR
+}
 
-class Ability { // Abilities for Algomons
-    String type;
+// Enum for Ability types
+enum AbilityType {
+    OFFENSIVE, DEFENSIVE, HEALING
+}
+
+class Ability implements Activatable { // Abilities for Algomons implements activatable
+    AbilityType type;
     String name;
 
-    public Ability(String type, String name) {
+    public Ability(AbilityType type, String name) {
         this.type = type;
         this.name = name;
         // constructor for Algomon's abilities *
     }
-    
-    void activate(){
-        System.out.println(name + " ability activated");
-    }
-    //void method for abilites activation
+   
+ @Override
+    public void activate() { //overridden void method 
+        System.out.println(name + " ability activated!");
+    }    
+
+}
+        interface Activatable { //interface for abilities with void method
+    void activate();
 }
 
-class Algomon { 
-    String type;
+class Algomon { //class for algomons
+    AlgomonType type;
     int health;
     int attack;
     int defense;
     int speed;
-    Ability offensiveAbility; //abilities to execute in the game
+    Ability offensiveAbility;
     Ability defensiveAbility;
-    Ability healingAbility; 
+    Ability healingAbility;
 
-    public Algomon(String type, int health, int attack, int defense, int speed) { //constructor for algomons and their stats
+    Algomon(AlgomonType type, int health, int attack, int defense, int speed) { //constructor for algomons
         this.type = type;
         this.health = health;
         this.attack = attack;
         this.defense = defense;
         this.speed = speed;
+        
+         switch (type) { //initialize switch method for enums
+            case FIRE:
+                offensiveAbility = new Ability(AbilityType.OFFENSIVE, "Fire Attack");
+                defensiveAbility = new Ability(AbilityType.DEFENSIVE, "Fire Defense");
+                healingAbility = new Ability(AbilityType.HEALING, "Fire Healing");
+                break;
+            case WATER:
+                offensiveAbility = new Ability(AbilityType.OFFENSIVE, "Water Attack");
+                defensiveAbility = new Ability(AbilityType.DEFENSIVE, "Water Defense");
+                healingAbility = new Ability(AbilityType.HEALING, "Water Healing");
+                break;
+            case EARTH:
+                offensiveAbility = new Ability(AbilityType.OFFENSIVE, "Earth Attack");
+                defensiveAbility = new Ability(AbilityType.DEFENSIVE, "Earth Defense");
+                healingAbility = new Ability(AbilityType.HEALING, "Earth Healing");
+                break;
+            case SUN:
+                offensiveAbility = new Ability(AbilityType.OFFENSIVE, "Sun Attack");
+                defensiveAbility = new Ability(AbilityType.DEFENSIVE, "Sun Defense");
+                healingAbility = new Ability(AbilityType.HEALING, "Sun Healing");
+                break;
+        }
     }
-       
 }
 
-class Player { 
+class Player {  //class creates a player
     List<Algomon> algomons; 
  //array list for algomons
     
     Player() { 
         algomons = new ArrayList<>(); 
     } 
- //method for add new algomons
-    
+ //method to add new algomons
     void addAlgomon(Algomon algomon) { 
         algomons.add(algomon); 
     } 
@@ -98,25 +132,10 @@ public class AlgomonGame { // renamed class
     }
     
  public static void startGame(){
-     Algomon algomon1 = new Algomon("Fire", 100, 20, 10, 30);  // create 4 new algomons with unique abilities
-        algomon1.offensiveAbility = new Ability("Offensive", "Fire Attack"); 
-        algomon1.defensiveAbility = new Ability("Defensive", "Fire Defense"); 
-        algomon1.healingAbility = new Ability("Healing", "Fire Healing"); 
- 
-        Algomon algomon2 = new Algomon("Water", 120, 15, 12, 25); 
-        algomon2.offensiveAbility = new Ability("Offensive", "Water Attack"); 
-        algomon2.defensiveAbility = new Ability("Defensive", "Water Defense"); 
-        algomon2.healingAbility = new Ability("Healing", "Water Healing"); 
- 
-        Algomon algomon3 = new Algomon("Earth", 110, 18, 15, 28); 
-        algomon3.offensiveAbility = new Ability("Offensive", "Earth Attack"); 
-        algomon3.defensiveAbility = new Ability("Defensive", "Earth Defense"); 
-        algomon3.healingAbility = new Ability("Healing", "Earth Healing"); 
- 
-        Algomon algomon4 = new Algomon("Sun", 130, 25, 8, 35); 
-        algomon4.offensiveAbility = new Ability("Offensive", "Sun Attack"); 
-        algomon4.defensiveAbility = new Ability("Defensive", "Sun Defense"); 
-        algomon4.healingAbility = new Ability("Healing", "Sun Healing"); 
+        Algomon algomon1 = new Algomon(AlgomonType.FIRE, 100, 20, 10, 30); // now we can use enums to make our void method code smaller
+        Algomon algomon2 = new Algomon(AlgomonType.WATER, 120, 15, 12, 25);
+        Algomon algomon3 = new Algomon(AlgomonType.EARTH, 110, 18, 15, 28);
+        Algomon algomon4 = new Algomon(AlgomonType.SUN, 130, 25, 8, 35);
  
         Player player1 = new Player(); // create 2 players 
         player1.addAlgomon(algomon1); 
@@ -129,8 +148,8 @@ public class AlgomonGame { // renamed class
         System.out.println("Algomon game prototype initialized!"); 
         System.out.println("Player 1 Algomon:"); 
         for (Algomon algomon : player1.algomons) { // output for algomon's 
-            System.out.println("Type: " + algomon.type); 
-            System.out.println("Health: " + algomon.health); 
+            System.out.println("Type: " + algomon.type +
+            " Health: " + algomon.health + " Attack: "+algomon.attack+" Defence: "+algomon.defense+" Speed: "+algomon.speed); // more variables
             algomon.offensiveAbility.activate(); 
             algomon.defensiveAbility.activate(); 
             algomon.healingAbility.activate(); 
@@ -139,8 +158,8 @@ public class AlgomonGame { // renamed class
  
         System.out.println("Player 2 Algomon:"); 
         for (Algomon algomon : player2.algomons) { 
-            System.out.println("Type: " + algomon.type); 
-            System.out.println("Health: " + algomon.health); 
+               System.out.println("Type: " + algomon.type +
+            " Health: " + algomon.health + " Attack: "+algomon.attack+" Defence: "+algomon.defense+" Speed: "+algomon.speed);   // more variables
             algomon.offensiveAbility.activate(); 
             algomon.defensiveAbility.activate(); 
             algomon.healingAbility.activate(); 
